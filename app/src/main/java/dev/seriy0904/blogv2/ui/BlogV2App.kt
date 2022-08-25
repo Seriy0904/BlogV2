@@ -1,5 +1,7 @@
 package dev.seriy0904.blogv2.ui
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -8,6 +10,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import dev.seriy0904.blogv2.ui.theme.BlogV2Theme
 import dev.seriy0904.blogv2.ui.utils.BlogNavGraph
@@ -23,9 +26,10 @@ fun BlogApp() {
         Scaffold(
             topBar = { MainTopBar() },
             bottomBar = { MainBottomBar(navigationActions) }
-        ) {
-            BlogNavGraph(navController)
-
+        ) { scaffoldPadding ->
+            Box(Modifier.padding(scaffoldPadding)) {
+                BlogNavGraph(navController)
+            }
         }
     }
 }
@@ -51,7 +55,7 @@ fun MainBottomBar(navController: BlogNavigationActions) {
             icon = { Icon(imageVector = Icons.Default.Favorite, "Favourites") })
         BottomNavigationItem(
             selected = (selectedIndex.value == 2),
-            onClick = { selectedIndex.value = 2 },
+            onClick = { selectedIndex.value = 2; navController.navigateToProfile() },
             icon = { Icon(imageVector = Icons.Default.Person, "Profile") })
     }
 }
