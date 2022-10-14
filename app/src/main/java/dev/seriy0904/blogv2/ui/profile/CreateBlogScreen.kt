@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CreateBlog() {
     val context = LocalContext.current
+    val tittle = rememberSaveable { mutableStateOf("") }
+    val description = rememberSaveable { mutableStateOf("") }
     Column(
         Modifier
             .fillMaxWidth()
@@ -23,8 +25,6 @@ fun CreateBlog() {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val tittle = rememberSaveable { mutableStateOf("") }
-        val description = rememberSaveable { mutableStateOf("") }
         TextField(
             label = { Text(text = "Blog tittle") },
             modifier = Modifier.padding(bottom = 10.dp),

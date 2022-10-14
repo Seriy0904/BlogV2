@@ -6,10 +6,9 @@ import androidx.navigation.NavHostController
 object BlogDestinations {
     const val HOME_ROUTE = "home"
     const val FAVOURITES_ROUTE = "favourites"
-    const val PROFILE_ROUTE = "profile"
 }
 
-class BlogNavigationActions(navController: NavHostController) {
+class BlogNavigationActions(val navController: NavHostController) {
     val navigateToHome: () -> Unit = {
         navController.navigate(BlogDestinations.HOME_ROUTE) {
             // Pop up to the start destination of the graph to
@@ -26,16 +25,7 @@ class BlogNavigationActions(navController: NavHostController) {
         }
     }
     val navigateToFavourites: () -> Unit = {
-        navController.navigate(BlogDestinations.FAVOURITES_ROUTE) {
-            popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
-            }
-            launchSingleTop = true
-            restoreState = true
-        }
-    }
-    val navigateToProfile: () -> Unit = {
-        navController.navigate(BlogDestinations.PROFILE_ROUTE) {
+        navController.navigate(BlogDestinations.FAVOURITES_ROUTE){
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }

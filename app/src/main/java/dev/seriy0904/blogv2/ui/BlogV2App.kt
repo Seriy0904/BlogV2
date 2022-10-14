@@ -6,13 +6,14 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.seriy0904.blogv2.ui.theme.BlogV2Theme
+import dev.seriy0904.blogv2.ui.utils.BlogDestinations
 import dev.seriy0904.blogv2.ui.utils.BlogNavGraph
 import dev.seriy0904.blogv2.ui.utils.BlogNavigationActions
 
@@ -42,20 +43,35 @@ fun MainTopBar() {
 }
 
 @Composable
-fun MainBottomBar(navController: BlogNavigationActions) {
-    BottomNavigation() {
-        val selectedIndex = remember { mutableStateOf(0) }
-        BottomNavigationItem(
-            selected = (selectedIndex.value == 0),
-            onClick = { selectedIndex.value = 0; navController.navigateToHome() },
-            icon = { Icon(imageVector = Icons.Default.Menu, "Main") })
-        BottomNavigationItem(
-            selected = (selectedIndex.value == 1),
-            onClick = { selectedIndex.value = 1; navController.navigateToFavourites() },
-            icon = { Icon(imageVector = Icons.Default.Favorite, "Favourites") })
-        BottomNavigationItem(
-            selected = (selectedIndex.value == 2),
-            onClick = { selectedIndex.value = 2; navController.navigateToProfile() },
-            icon = { Icon(imageVector = Icons.Default.Person, "Profile") })
+fun MainBottomBar(navigationActions: BlogNavigationActions) {
+    val items = listOf(
+        BlogDestinations.HOME_ROUTE,
+        BlogDestinations.FAVOURITES_ROUTE
+    )
+    BottomNavigation {
+        val navBackStackEntry by navigationActions.navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
+        items.forEach {
+            BottomNavigationItem(
+                selected = (it == currentRoute),
+                onClick = {
+                    when (it) {
+                        BlogDestinations.HOME_ROUTE -> navigationActions.navigateToHome()
+                        BlogDestinations.FAVOURITES_ROUTE -> navigationActions.navigateToFavourites()
+                    }
+                },
+                icon = {
+                    when (it) {
+                        BlogDestinations.HOME_ROUTE -> Icon(
+                            imageVector = Icons.Default.Menu,
+                            "Main"
+                        )
+                        BlogDestinations.FAVOURITES_ROUTE -> Icon(
+                            imageVector = Icons.Default.Favorite,
+                            "Favourites"
+                        )
+                    }
+                })
+        }
     }
 }

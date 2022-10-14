@@ -23,7 +23,7 @@ fun BlogList(array: ArrayList<BlogListModel> = arrayListOf()) {
 @Composable
 private fun BlogListItem(item: BlogListModel) {
     Column(Modifier.padding(horizontal = 10.dp).padding(6.dp)) {
-        Text(text = item.name, style = MaterialTheme.typography.subtitle1)
+        Text(text = item.tittle, style = MaterialTheme.typography.subtitle1)
         Text(text = item.description, style = MaterialTheme.typography.body2)
     }
     Divider(
