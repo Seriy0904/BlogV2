@@ -1,8 +1,7 @@
-package dev.seriy0904.blogv2.data.dao
+package dev.seriy0904.blogv2.data.database.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import dev.seriy0904.blogv2.data.entities.Blog
+import dev.seriy0904.blogv2.data.database.entities.Blog
 
 @Dao
 interface BlogsDao {
@@ -13,7 +12,7 @@ interface BlogsDao {
     @Update
     suspend fun updateBlog(newBlog: Blog)
     @Query("Select * from blog order by uid ASC")
-    fun getAllBlogs(): LiveData<List<Blog>>
+    fun getAllBlogs(): List<Blog>
     @Query("Select * from blog where uid = :blogId")
     suspend fun getBlog(blogId: Int)
 }

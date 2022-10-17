@@ -1,4 +1,4 @@
-package dev.seriy0904.blogv2.data.entities
+package dev.seriy0904.blogv2.data.database.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,4 +1,4 @@
-package dev.seriy0904.blogv2.ui.profile
+package dev.seriy0904.blogv2.ui.createblog
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
