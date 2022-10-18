@@ -14,5 +14,5 @@ interface BlogsDao {
     @Query("Select * from blog order by uid ASC")
     fun getAllBlogs(): List<Blog>
     @Query("Select * from blog where uid = :blogId")
-    suspend fun getBlog(blogId: Int)
+    suspend fun getBlog(blogId: Int):Blog
 }
