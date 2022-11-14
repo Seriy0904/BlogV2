@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 
 object BlogDestinations {
     const val HOME_ROUTE = "home"
-    const val FAVOURITES_ROUTE = "favourites"
+    const val CREATE_BLOG_ROUTE = "create_blog"
 }
 
 class BlogNavigationActions(val navController: NavHostController) {
@@ -25,7 +25,7 @@ class BlogNavigationActions(val navController: NavHostController) {
         }
     }
     val navigateToFavourites: () -> Unit = {
-        navController.navigate(BlogDestinations.FAVOURITES_ROUTE){
+        navController.navigate(BlogDestinations.CREATE_BLOG_ROUTE){
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }

@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Blog(
-    @PrimaryKey val uid: Int,
+    @PrimaryKey(autoGenerate = true) val uid: Int = 0,
     @ColumnInfo(name = "tittle")val tittle:String,
     @ColumnInfo(name = "description")val description:String
 )

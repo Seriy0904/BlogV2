@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -46,7 +46,7 @@ fun MainTopBar() {
 fun MainBottomBar(navigationActions: BlogNavigationActions) {
     val items = listOf(
         BlogDestinations.HOME_ROUTE,
-        BlogDestinations.FAVOURITES_ROUTE
+        BlogDestinations.CREATE_BLOG_ROUTE
     )
     BottomNavigation {
         val navBackStackEntry by navigationActions.navController.currentBackStackEntryAsState()
@@ -57,7 +57,7 @@ fun MainBottomBar(navigationActions: BlogNavigationActions) {
                 onClick = {
                     when (it) {
                         BlogDestinations.HOME_ROUTE -> navigationActions.navigateToHome()
-                        BlogDestinations.FAVOURITES_ROUTE -> navigationActions.navigateToFavourites()
+                        BlogDestinations.CREATE_BLOG_ROUTE -> navigationActions.navigateToFavourites()
                     }
                 },
                 icon = {
@@ -66,9 +66,9 @@ fun MainBottomBar(navigationActions: BlogNavigationActions) {
                             imageVector = Icons.Default.Menu,
                             "Main"
                         )
-                        BlogDestinations.FAVOURITES_ROUTE -> Icon(
-                            imageVector = Icons.Default.Favorite,
-                            "Favourites"
+                        BlogDestinations.CREATE_BLOG_ROUTE -> Icon(
+                            imageVector = Icons.Default.Add,
+                            "Create blog"
                         )
                     }
                 })

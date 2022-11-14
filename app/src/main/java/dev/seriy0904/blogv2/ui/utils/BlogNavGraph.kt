@@ -15,6 +15,6 @@ fun BlogNavGraph(
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         composable(BlogDestinations.HOME_ROUTE){MainRecommendedList()}
-        composable(BlogDestinations.FAVOURITES_ROUTE){ CreateBlog() }
+        composable(BlogDestinations.CREATE_BLOG_ROUTE){ CreateBlog(navController) }
     }
 }
